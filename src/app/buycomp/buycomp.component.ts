@@ -49,7 +49,7 @@ export class BuycompComponent {
       };
 
       this.http
-        .post<any>('http://localhost:3000/purchasestock', purchaseData)
+        .post<any>('https://stockapp-backend-production-673d.up.railway.app/purchasestock', purchaseData)
         .subscribe({
           next: (response) => {
             console.log('Purchase successful:', response);
@@ -71,7 +71,7 @@ export class BuycompComponent {
 
   updateWallet(newAmount: number): void {
     this.http
-      .post<any>('http://localhost:3000/update-wallet', { amount: newAmount })
+      .post<any>('https://stockapp-backend-production-673d.up.railway.app/update-wallet', { amount: newAmount })
       .subscribe({
         next: (response) =>
           console.log('Wallet updated successfully:', response),

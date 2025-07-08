@@ -235,7 +235,7 @@ export class HomeComponent implements OnInit {
   }
 
   getAllStockData() {
-    this.http.get<any[]>('http://localhost:3000/get-all-stock-data').subscribe({
+    this.http.get<any[]>('https://stockapp-backend-production-673d.up.railway.app/get-all-stock-data').subscribe({
       next: (data) => {
         this.stockData = data;
         this.updateDisplaySellButton();
@@ -274,7 +274,7 @@ export class HomeComponent implements OnInit {
     try {
       const response = await this.http
         .get<{ exists?: boolean }>(
-          `http://localhost:3000/check-watchlist?company_name=${encodeURIComponent(
+          `https://stockapp-backend-production-673d.up.railway.app/check-watchlist?company_name=${encodeURIComponent(
             companyName
           )}&ticker=${encodeURIComponent(ticker)}`
         )
@@ -285,7 +285,7 @@ export class HomeComponent implements OnInit {
       if (!exists) {
         await this.http
           .post(
-            `http://localhost:3000/add-to-watchlist`,
+            `https://stockapp-backend-production-673d.up.railway.app/add-to-watchlist`,
             { company_name: companyName, ticker: ticker },
             { responseType: 'text' }
           )
@@ -297,7 +297,7 @@ export class HomeComponent implements OnInit {
         console.log('Added to watchlist, status now filled.');
       } else {
         await this.http
-          .request('delete', `http://localhost:3000/remove-from-watchlist`, {
+          .request('delete', `https://stockapp-backend-production-673d.up.railway.app/remove-from-watchlist`, {
             body: { company_name: companyName, ticker: ticker },
             responseType: 'text',
           })
@@ -325,7 +325,7 @@ export class HomeComponent implements OnInit {
       return of([]);
     }
 
-    const autocmpUrl = `http://localhost:3000/autocomplete/${value}`;
+    const autocmpUrl = `https://stockapp-backend-production-673d.up.railway.app/autocomplete/${value}`;
 
     return this.http.get<{ result: any[] }>(autocmpUrl).pipe(
       map((response) => {
@@ -355,7 +355,7 @@ export class HomeComponent implements OnInit {
       // console.log("Market is Closed");
       return;
     }
-    const apiUrl = `http://localhost:3000/getSuggestions2/${input}`;
+    const apiUrl = `https://stockapp-backend-production-673d.up.railway.app/getSuggestions2/${input}`;
     this.http.get<any>(apiUrl).subscribe((data) => {
       if (data) {
         this.searchResult2.c = Number(data.c).toFixed(2);
@@ -373,7 +373,7 @@ export class HomeComponent implements OnInit {
   // }
 
   getPortfolioData() {
-    this.http.get<any[]>('http://localhost:3000/get-all-stock-data').subscribe({
+    this.http.get<any[]>('https://stockapp-backend-production-673d.up.railway.app/get-all-stock-data').subscribe({
       next: (data) => {
         this.portfolioData = data;
         console.log('Wallet data:', this.portfolioData);
@@ -414,36 +414,36 @@ export class HomeComponent implements OnInit {
 
     const apiConfigs = [
       {
-        url: `http://localhost:3000/getSuggestions/${str}`,
+        url: `https://stockapp-backend-production-673d.up.railway.app/getSuggestions/${str}`,
         cacheKey: `suggestions_${str}`,
       },
       {
-        url: `http://localhost:3000/getSuggestions2/${str}`,
+        url: `https://stockapp-backend-production-673d.up.railway.app/getSuggestions2/${str}`,
         cacheKey: `suggestions2_${str}`,
       },
       {
-        url: `http://localhost:3000/companypeers/${str}`,
+        url: `https://stockapp-backend-production-673d.up.railway.app/companypeers/${str}`,
         cacheKey: `companypeers_${str}`,
       },
-      { url: `http://localhost:3000/news/${str}`, cacheKey: `news_${str}` },
+      { url: `https://stockapp-backend-production-673d.up.railway.app/news/${str}`, cacheKey: `news_${str}` },
       {
-        url: `http://localhost:3000/insights/${str}`,
+        url: `https://stockapp-backend-production-673d.up.railway.app/insights/${str}`,
         cacheKey: `insights_${str}`,
       },
       {
-        url: `http://localhost:3000/recommend/${str}`,
+        url: `https://stockapp-backend-production-673d.up.railway.app/recommend/${str}`,
         cacheKey: `recommend_${str}`,
       },
       {
-        url: `http://localhost:3000/earning/${str}`,
+        url: `https://stockapp-backend-production-673d.up.railway.app/earning/${str}`,
         cacheKey: `earnings_${str}`,
       },
       {
-        url: `http://localhost:3000/stock-chart/${str}`,
+        url: `https://stockapp-backend-production-673d.up.railway.app/stock-chart/${str}`,
         cacheKey: `stdchart_${str}`,
       },
       {
-        url: `http://localhost:3000/lastday/${str}`,
+        url: `https://stockapp-backend-production-673d.up.railway.app/lastday/${str}`,
         cacheKey: `sumtabchrt_${str}`,
       },
     ];
@@ -994,7 +994,7 @@ export class HomeComponent implements OnInit {
 
     this.http
       .get<{ exists: boolean }>(
-        `http://localhost:3000/check-watchlist?company_name=${encodeURIComponent(
+        `https://stockapp-backend-production-673d.up.railway.app/check-watchlist?company_name=${encodeURIComponent(
           companyName
         )}&ticker=${encodeURIComponent(ticker)}`
       )
@@ -1016,7 +1016,7 @@ export class HomeComponent implements OnInit {
   }
 
   openModalbuy(): void {
-    this.http.get<number>('http://localhost:3000/get-wallet').subscribe(
+    this.http.get<number>('https://stockapp-backend-production-673d.up.railway.app/get-wallet').subscribe(
       (availableFunds) => {
         const dialogRef = this.dialog.open(BuycompComponent, {
           width: '450px',
@@ -1047,7 +1047,7 @@ export class HomeComponent implements OnInit {
   }
 
   openModalsell(): void {
-    this.http.get<number>('http://localhost:3000/get-wallet').subscribe(
+    this.http.get<number>('https://stockapp-backend-production-673d.up.railway.app/get-wallet').subscribe(
       (availableFunds) => {
         const dialogRef = this.dialog.open(SellcompComponent, {
           width: '450px',

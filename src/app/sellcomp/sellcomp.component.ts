@@ -32,7 +32,7 @@ export class SellcompComponent {
 
   fetchAvailableStocks(symbol: string) {
     this.http
-      .get<any>('http://localhost:3000/get-available-stocks/' + symbol)
+      .get<any>('https://stockapp-backend-production-673d.up.railway.app/get-available-stocks/' + symbol)
       .subscribe(
         (response) => {
           this.availableStocks = response.availableStocks;
@@ -61,14 +61,14 @@ export class SellcompComponent {
       };
 
       this.http
-        .post<any>('http://localhost:3000/sellstock', sellData)
+        .post<any>('https://stockapp-backend-production-673d.up.railway.app/sellstock', sellData)
         .subscribe(
           (response) => {
             console.log('Sell successful:', response);
 
             const amountEarned = response.totalEarned;
 
-            this.http.get<any>('http://localhost:3000/get-wallet').subscribe(
+            this.http.get<any>('https://stockapp-backend-production-673d.up.railway.app/get-wallet').subscribe(
               (walletResponse) => {
                 const currentAmount = walletResponse;
 
@@ -80,7 +80,7 @@ export class SellcompComponent {
                 console.log(currentAmount);
 
                 this.http
-                  .post<any>('http://localhost:3000/update-wallet', {
+                  .post<any>('https://stockapp-backend-production-673d.up.railway.app/update-wallet', {
                     amount: updatedAmount,
                   })
                   .subscribe(

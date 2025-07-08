@@ -29,7 +29,7 @@ export class PortfolioComponent implements OnInit {
   fetchStockData(): void {
     console.log('Reachin');
     this.isLoading = true;
-    this.http.get<any[]>('http://localhost:3000/get-all-stock-data').subscribe(
+    this.http.get<any[]>('https://stockapp-backend-production-673d.up.railway.app/get-all-stock-data').subscribe(
       (response) => {
         console.log('data', response);
 
@@ -96,13 +96,13 @@ export class PortfolioComponent implements OnInit {
 
   fetchSuggestionData(ticker: string) {
     return this.http.get<any>(
-      `http://localhost:3000/getSuggestions2/${ticker}`
+      `https://stockapp-backend-production-673d.up.railway.app/getSuggestions2/${ticker}`
     );
   }
 
   fetchWallet(): void {
     this.http
-      .get<{ money: number }>('http://localhost:3000/get-wallet')
+      .get<{ money: number }>('https://stockapp-backend-production-673d.up.railway.app/get-wallet')
       .subscribe({
         next: (response) => {
           console.log('Wallet money:', response);

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CalldataService {
-  private baseURL = 'http://localhost:3000';
+  private baseURL = 'https://stockapp-backend-production-673d.up.railway.app';
 
   constructor(private http: HttpClient) {}
 

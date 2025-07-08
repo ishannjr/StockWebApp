@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class WatchlistComponent implements OnInit {
   watchlist: any[] = [];
-  apiUrl = 'http://localhost:3000/check-watchlistdata';
+  apiUrl = 'https://stockapp-backend-production-673d.up.railway.app/check-watchlistdata';
   priceChange: any;
   percentageChange: string | number | undefined;
   datatocard: any;
@@ -26,7 +26,7 @@ export class WatchlistComponent implements OnInit {
     this.router.navigate(['/search', symbol]);
   }
   removeItem(company_name: string, ticker: string) {
-    const url = 'http://localhost:3000/remove-from-watchlist';
+    const url = 'https://stockapp-backend-production-673d.up.railway.app/remove-from-watchlist';
     const options = {
       headers: { 'Content-Type': 'application/json' },
       body: { company_name, ticker },
@@ -63,7 +63,7 @@ export class WatchlistComponent implements OnInit {
   }
 
   getStockInfo(ticker: string) {
-    const url = `http://localhost:3000/getSuggestions2/${ticker}`;
+    const url = `https://stockapp-backend-production-673d.up.railway.app/getSuggestions2/${ticker}`;
     this.http.get<any>(url).subscribe({
       next: (response) => {
         this.datatocard = response;
